@@ -2,12 +2,29 @@ import React, { Component } from "react";
 
 import GroupChatRoom from "./group_chat_room";
 import GroupChatMsg from "./group_chat_msg";
+import GroupChatAdd from "./group_chat_add";
 
 class GroupChat extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            child_search: ''
         };
+        this.GroupChatAdd = React.createRef()
+        this.add_user = this.add_user.bind();
+    }
+
+    async add_user() {/*
+        var self = this;
+        axios.post(BASELINE + "class/get/one", data)
+          .then(function (response) {
+            self.setState({ c_title: response.data.title[0] });
+            self.setState({ c_price: response.data.price[0] });
+            self.setState({ c_des: response.data.description[0] });
+          })
+          .catch(function (error) {
+            alert(error);
+          });*/
     }
 
     render() {
@@ -24,12 +41,14 @@ class GroupChat extends Component {
                                             <span>Messages</span>
                                         </div>
                                         <div className="flex justify-between items-center p-3 gap-2">
-                                            <span className="flex-grow-0 cursor-pointer">
+
+                                            <button className="flex-grow-0 cursor-pointer" onClick={() => this.GroupChatAdd.current.closepanel("on")}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
                                                     <path fill="none" d="M0 0h24v24H0z" />
                                                     <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="rgba(128,138,151,1)" />
                                                 </svg>
-                                            </span>
+                                            </button>
+
                                             <form className="flex-grow">
                                                 <div className="relative">
                                                     <div
@@ -60,6 +79,9 @@ class GroupChat extends Component {
                         </div>
                     </div>
                 </div >
+                <GroupChatAdd
+                    ref={this.GroupChatAdd}
+                />
             </>
         );
     }
